@@ -23,9 +23,9 @@ create an HTML form (for bootstrap styled form, see line 26)in your index.html f
 * add POST functionality to HTML form
 * optimistically render the new dog
 
-```<form class="dog-form">
+```
+<form class="dog-form">
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
             <label for="name">Dog Name:</label>
             <input type="text" name="name" placeholder="Rex" />
         </div>
