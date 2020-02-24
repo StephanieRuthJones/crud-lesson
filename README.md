@@ -50,3 +50,11 @@ add a delete button to each dog card that:
 * DELETEs dog from the backend
 
 create a form on each dog card that UPDATEs the dog's information
+
+```html
+<form class="form-group">
+    <label for="age">Age:</label>
+    <input type="number" id=${dog.id} name="age" placeholder="Age" />
+    <button type="submit" class="btn btn-primary"> Submit </button>
+</form>
+```
