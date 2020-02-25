@@ -3,11 +3,13 @@ const dogsContainer = document.querySelector('.dogs-container')
 const dogForm = document.querySelector('.dog-form')
 console.log(dogsContainer)
 fetch(BASE_URL)
-    .then(response => response.json())
+    .then(parseJSON)
     .then(dogs => {
         dogs.map(createDogCard)
     })
-
+function parseJSON(response) {
+    return response.json()
+}
 function createDogCard(dog) {
     const dogCard = document.createElement('div')
     dogCard.className = 'card'
@@ -19,8 +21,18 @@ function createDogCard(dog) {
                 <p class="card-text">Age: ${dog.age}</p>
             </div>
         `
+    const deleteButton = document.createElement('button')
+    deleteButton.textContent = 'DELETE'
+    deleteButton.addEventListener('click', () => {
+        console.log("event.target", event.target.parentNode)
+        fetch(`${BASE_URL}/${dog.id}`, {
+            method: 'DELETE'
+        }).then(event.target.parentNode.remove())
+    })
+    dogCard.append(deleteButton)
     dogsContainer.appendChild(dogCard)
 }
+
 dogForm.addEventListener('submit', () => {
     event.preventDefault()
     const formData = new FormData(dogForm)
@@ -39,7 +51,9 @@ dogForm.addEventListener('submit', () => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ name, breed, image, age })
-    }).then(dogForm.reset())
+    }).then(parseJSON)
+        .then(console.log)
+        .then(dogForm.reset())
 
 
 })

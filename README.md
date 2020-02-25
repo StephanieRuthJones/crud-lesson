@@ -8,7 +8,8 @@ Fetch dogs from backend and display as cards on frontend
 * URL to fetch from: 'https:dogs-backend.herokuapp.com/dogs'
 * bootstrap dog card:
 
-```<div class="card">
+```html
+<div class="card">
      <img src="..." class="card-img-top" alt="...">
      <div class="card-body">
          <h5 class="card-title">Card title</h5>
@@ -23,7 +24,7 @@ create an HTML form (for bootstrap styled form, see line 26)in your index.html f
 * add POST functionality to HTML form
 * optimistically render the new dog
 
-```
+```html
 <form class="dog-form">
         <div class="form-group">
             <label for="name">Dog Name:</label>
@@ -54,7 +55,7 @@ create a form on each dog card that UPDATEs the dog's information
 ```html
 <form class="form-group">
     <label for="age">Age:</label>
-    <input type="number" id=${dog.id} name="age" placeholder="Age" />
+    <input type="number" id="..." name="age" placeholder="Age" />
     <button type="submit" class="btn btn-primary"> Submit </button>
 </form>
 ```
