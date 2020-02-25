@@ -1,6 +1,7 @@
 const BASE_URL = 'https://dogs-backend.herokuapp.com/dogs'
 const dogsContainer = document.querySelector('.dogs-container')
 const dogForm = document.querySelector('.dog-form')
+
 console.log(dogsContainer)
 fetch(BASE_URL)
     .then(parseJSON)
@@ -20,6 +21,7 @@ function createDogCard(dog) {
                 <p class="card-text">Breed: ${dog.breed}</p>
                 <p class="card-text">Age: ${dog.age}</p>
             </div>
+            
         `
     const deleteButton = document.createElement('button')
     deleteButton.textContent = 'DELETE'
@@ -29,8 +31,34 @@ function createDogCard(dog) {
             method: 'DELETE'
         }).then(event.target.parentNode.remove())
     })
-    dogCard.append(deleteButton)
+
+    const editDogForm = document.createElement('form')
+    editDogForm.className = 'form-group'
+    editDogForm.innerHTML = `
+                <label for="age">Age:</label>
+                <input type="number" id="${dog.id}" name="age" placeholder="Age" />
+                <button type="submit" class="btn btn-primary"> Submit </button>
+            `
+
+    editDogForm.addEventListener('submit', () => {
+        event.preventDefault()
+        editDog(dog.id)
+    })
+    dogCard.append(editDogForm, deleteButton)
     dogsContainer.appendChild(dogCard)
+}
+function editDog(id) {
+    const age = document.getElementById(`${id}`).value
+    console.log(age)
+
+    fetch(`${BASE_URL}/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ age })
+    })
 }
 
 dogForm.addEventListener('submit', () => {
