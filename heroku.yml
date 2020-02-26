@@ -1,5 +1,5 @@
 build:
     docker:
         web: Dockerfile
-    run:
-        web: lite-server
+run:
+    web: http-server
